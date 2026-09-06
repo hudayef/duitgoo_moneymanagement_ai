@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: slipinn_password
+      POSTGRES_USER: slipinn_user
+      POSTGRES_DB: slipinn_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U slipinn_user -d slipinn_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  nats:
+    image: nats:2.9-alpine
+    ports:
+      - "4222:4222"
+      - "8222:8222" # Management port
+    command: ["-js"] # Enable JetStream
+    volumes:
+      - nats_data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8222/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Observability skeleton
+  grafana:
+    image: grafana/grafana:10.0.0
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+  loki:
+    image: grafana/loki:2.8.0
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./infrastructure/observability/loki/loki-config.yaml:/etc/loki/local-config.yaml
+
+  tempo:
+    image: grafana/tempo:2.1.1
+    ports:
+      - "3200:3200"
+    command: -config.file=/etc/tempo.yaml
+    volumes:
+      - ./infrastructure/observability/tempo/tempo-config.yaml:/etc/tempo.yaml
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.81.0
+    ports:
+      - "4317:4317" # OTLP gRPC
+      - "4318:4318" # OTLP HTTP
+    volumes:
+      - ./infrastructure/observability/otel/otel-config.yaml:/etc/otelcol-contrib/config.yaml
+
+volumes:
+  postgres_data:
+  redis_data:
+  nats_data:
+  grafana_data:
