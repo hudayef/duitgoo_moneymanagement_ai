@@ -138,7 +138,7 @@ pub async fn post_journal(
         // Liability/Equity/Revenue: balance = balance - debit + credit
 
         // Let's get the account type first
-        let account = sqlx::query_as::<_, Account>("SELECT * FROM accounts WHERE id = $1 AND business_id = $2")
+        let account = sqlx::query_as::<_, Account>("SELECT * FROM accounts WHERE id = $1 AND business_id = $2 FOR UPDATE")
             .bind(line.account_id)
             .bind(business_id)
             .fetch_one(&mut *tx)
