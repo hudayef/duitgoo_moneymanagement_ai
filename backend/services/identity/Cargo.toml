@@ -12,3 +12,4 @@ tracing = { workspace = true }
 uuid = { workspace = true }
 chrono = { workspace = true }
 shared = { path = "../../shared" }
+argon2 = { version = "0.5.3", features = ["std"] }

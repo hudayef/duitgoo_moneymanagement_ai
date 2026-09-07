@@ -24,7 +24,10 @@ pub async fn register(
     }
 
     // Hash password (simplified for Phase 2)
-    let password_hash = format!("hashed_{}", payload.password);
+    use argon2::{password_hash::{rand_core::OsRng, PasswordHasher, SaltString}, Argon2};
+    let salt = SaltString::generate(&mut OsRng);
+    let argon2 = Argon2::default();
+    let password_hash = argon2.hash_password(payload.password.as_bytes(), &salt).map_err(|_| AppError::InternalError("Hashing failed".into()))?.to_string();
 
     let user = create_user(&state.db, &payload.email, &password_hash).await?;
 

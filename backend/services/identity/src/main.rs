@@ -15,7 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     init_tracing("identity_service");
 
     let config = AppConfig::from_env().unwrap_or(AppConfig {
-         database_url: std::env::var("DATABASE_URL").unwrap_or_else(|_| "postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db".to_string()),
+         database_url: std::env::var("DATABASE_URL").unwrap_or_else(|_| "postgres://duitgoo_user:duitgoo_password@localhost:5432/identity_db".to_string()),
          server_port: 8001,
          nats_url: "localhost:4222".to_string(),
     });
