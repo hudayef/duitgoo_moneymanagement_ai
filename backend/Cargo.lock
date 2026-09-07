@@ -1826,6 +1826,17 @@ checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 [[package]]
 name = "reporting"
 version = "0.1.0"
+dependencies = [
+ "axum",
+ "chrono",
+ "rust_decimal",
+ "serde",
+ "shared",
+ "sqlx",
+ "tokio",
+ "tracing",
+ "uuid",
+]
 
 [[package]]
 name = "reqwest"
