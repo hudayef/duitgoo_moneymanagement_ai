@@ -22,6 +22,7 @@ migrate:
 	cd backend/services/identity && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db
 	cd backend/services/business && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db
 	cd backend/services/accounting && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db
+	cd backend/services/transaction && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db
 
 seed:
 	@echo "Seeding database..."
