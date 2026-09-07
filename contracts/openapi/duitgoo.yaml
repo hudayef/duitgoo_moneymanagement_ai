@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  title: SLIPINN API
-  description: API for the Slipinn Financial Intelligence Platform
+  title: DUITGOO API
+  description: API for the Duitgoo Financial Intelligence Platform
   version: 0.1.0
 servers:
-  - url: https://api.slipinn.com/v1
+  - url: https://api.duitgoo.com/v1
 paths:
   /healthz:
     get:

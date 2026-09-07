@@ -1,1 +1,1 @@
-print("Slipinn Intelligence")
+print("Duitgoo Intelligence")

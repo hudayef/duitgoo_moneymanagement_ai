@@ -4,15 +4,15 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_PASSWORD: slipinn_password
-      POSTGRES_USER: slipinn_user
-      POSTGRES_DB: slipinn_db
+      POSTGRES_PASSWORD: duitgoo_password
+      POSTGRES_USER: duitgoo_user
+      POSTGRES_DB: duitgoo_db
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U slipinn_user -d slipinn_db"]
+      test: ["CMD-SHELL", "pg_isready -U duitgoo_user -d duitgoo_db"]
       interval: 5s
       timeout: 5s
       retries: 5

@@ -29,6 +29,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let state = routes::GatewayState {
         client: Client::new(),
         identity_url,
+        business_url: std::env::var("BUSINESS_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8002".to_string()),
     };
 
     let app = routes::create_router(state)

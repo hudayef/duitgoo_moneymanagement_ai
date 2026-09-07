@@ -1,4 +1,4 @@
-# SLIPINN - AI-powered financial intelligence platform
+# DUITGOO - AI-powered financial intelligence platform
 
 Production-Grade Financial Intelligence Platform for UMKM.
 

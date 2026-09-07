@@ -1,7 +1,7 @@
 .PHONY: help setup migrate seed test health logs dev test-backend
 
 help:
-	@echo "SLIPINN Developer Commands"
+	@echo "DUITGOO Developer Commands"
 	@echo ""
 	@echo "make setup    - Install dependencies and prepare local environment"
 	@echo "make migrate  - Run database migrations"
@@ -18,8 +18,9 @@ setup:
 
 migrate:
 	@echo "Running database migrations..."
-	cd backend/services/identity && sqlx database create -D postgres://slipinn_user:slipinn_password@localhost:5432/slipinn_db || true
-	cd backend/services/identity && sqlx migrate run -D postgres://slipinn_user:slipinn_password@localhost:5432/slipinn_db
+	cd backend/services/identity && sqlx database create -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db || true
+	cd backend/services/identity && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db
+	cd backend/services/business && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/duitgoo_db
 
 seed:
 	@echo "Seeding database..."
