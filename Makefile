@@ -36,6 +36,8 @@ migrate:
 	cd backend/services/finance && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/finance_db
 	cd backend/services/reporting && sqlx database create -D postgres://duitgoo_user:duitgoo_password@localhost:5432/reporting_db || true
 	cd backend/services/reporting && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/reporting_db
+	cd backend/services/budget && sqlx database create -D postgres://duitgoo_user:duitgoo_password@localhost:5432/budget_db || true
+	cd backend/services/budget && sqlx migrate run -D postgres://duitgoo_user:duitgoo_password@localhost:5432/budget_db
 
 seed:
 	@echo "Seeding database..."

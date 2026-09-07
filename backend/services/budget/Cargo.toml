@@ -1,0 +1,15 @@
+[package]
+name = "budget"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { workspace = true }
+tokio = { workspace = true }
+sqlx = { workspace = true, features = ["postgres", "runtime-tokio-rustls", "uuid", "chrono", "json", "rust_decimal"] }
+serde = { workspace = true }
+tracing = { workspace = true }
+uuid = { workspace = true }
+chrono = { workspace = true }
+shared = { path = "../../shared" }
+rust_decimal = "1.34"

@@ -10,6 +10,7 @@ members = [
     "services/inventory",
     "services/finance",
     "services/reporting",
+    "services/budget",
     "services/notification",
     "services/subscription",
     "services/audit",
