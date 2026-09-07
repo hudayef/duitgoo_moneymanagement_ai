@@ -30,6 +30,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         client: Client::new(),
         identity_url,
         business_url: std::env::var("BUSINESS_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8002".to_string()),
+        accounting_url: std::env::var("ACCOUNTING_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8003".to_string()),
     };
 
     let app = routes::create_router(state)
