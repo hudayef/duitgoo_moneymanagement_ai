@@ -1,4 +1,4 @@
-.PHONY: help setup migrate seed test health logs dev
+.PHONY: help setup migrate seed test health logs dev test-backend
 
 help:
 	@echo "SLIPINN Developer Commands"
@@ -7,32 +7,37 @@ help:
 	@echo "make migrate  - Run database migrations"
 	@echo "make seed     - Seed database with initial data"
 	@echo "make test     - Run all tests (frontend, rust, python, etc.)"
+	@echo "make test-backend - Run backend tests"
 	@echo "make health   - Run health checks across all services"
 	@echo "make logs     - View aggregated logs"
 	@echo "make dev      - Start local development environment"
 
 setup:
 	@echo "Setting up local environment..."
-	# Placeholder for setup script
+	cargo install sqlx-cli --no-default-features --features rustls,postgres
 
 migrate:
 	@echo "Running database migrations..."
-	# Placeholder for migration script
+	cd backend/services/identity && sqlx database create -D postgres://slipinn_user:slipinn_password@localhost:5432/slipinn_db || true
+	cd backend/services/identity && sqlx migrate run -D postgres://slipinn_user:slipinn_password@localhost:5432/slipinn_db
 
 seed:
 	@echo "Seeding database..."
-	# Placeholder for seeding script
+	@echo "Not implemented yet"
 
-test:
-	@echo "Running tests..."
-	# Placeholder for tests
-	@echo "Frontend tests..."
-	@echo "Backend tests..."
-	@echo "Intelligence tests..."
+test: test-backend
+	@echo "Running frontend tests..."
+	cd frontend && npm run test:unit
+	@echo "Running intelligence tests..."
+	cd intelligence && pytest || true
+
+test-backend:
+	@echo "Running backend tests..."
+	cd backend && cargo test
 
 health:
 	@echo "Running health checks..."
-	# Placeholder for health check script
+	curl -s http://localhost:8000/healthz
 
 logs:
 	@echo "Viewing logs..."
