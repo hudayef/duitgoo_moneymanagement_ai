@@ -35,6 +35,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         sales_url: std::env::var("SALES_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8005".to_string()),
         purchase_url: std::env::var("PURCHASE_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8006".to_string()),
         inventory_url: std::env::var("INVENTORY_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8007".to_string()),
+        finance_url: std::env::var("FINANCE_SERVICE_URL").unwrap_or_else(|_| "http://localhost:8008".to_string()),
     };
 
     let app = routes::create_router(state)

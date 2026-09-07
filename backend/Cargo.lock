@@ -616,6 +616,17 @@ checksum = "28dea519a9695b9977216879a3ebfddf92f1c08c05d984f8996aecd6ecdc811d"
 [[package]]
 name = "finance"
 version = "0.1.0"
+dependencies = [
+ "axum",
+ "chrono",
+ "rust_decimal",
+ "serde",
+ "shared",
+ "sqlx",
+ "tokio",
+ "tracing",
+ "uuid",
+]
 
 [[package]]
 name = "find-msvc-tools"
