@@ -1,0 +1,3 @@
+## 2024-09-08 - Keyboard Navigation Foundations
+**Learning:** Adding a "Skip to main content" link paired with proper `focus-visible` styles (`focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2`) makes keyboard navigation significantly better in this app. Ensure the main content area has `tabindex="-1"` and `focus:outline-none` so it receives focus seamlessly without showing an ugly ring around the entire main region.
+**Action:** Use this skip link and focus ring pattern as standard for any new major layout or custom interactive component built in this repo.
