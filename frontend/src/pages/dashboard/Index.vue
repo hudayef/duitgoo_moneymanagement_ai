@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUpRight, ArrowDownRight, DollarSign, Users } from 'lucide-vue-next'
+import { ArrowUpRight, ArrowDownRight, DollarSign, Users, Receipt } from 'lucide-vue-next'
 </script>
 
 <template>
@@ -94,8 +94,10 @@ import { ArrowUpRight, ArrowDownRight, DollarSign, Users } from 'lucide-vue-next
       <div class="px-4 py-5 sm:px-6 border-b border-gray-100">
         <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Transactions</h3>
       </div>
-      <div class="p-6 flex justify-center items-center h-48 text-gray-500">
-        No recent transactions found.
+      <div class="p-12 flex flex-col justify-center items-center h-48 text-gray-500">
+        <Receipt class="h-10 w-10 text-gray-400 mb-3" />
+        <h4 class="text-sm font-medium text-gray-900">No recent transactions</h4>
+        <p class="text-sm text-gray-500 mt-1">When you record transactions, they will appear here.</p>
       </div>
     </div>
   </div>
